@@ -40,13 +40,13 @@ shinyServer(function(input, output) {
   
   SE <- reactive({
     if (input$RCI == "JT") {
-      return(round(sqrt(2*input$CGITS*(1-input$TRR)),2))
+      return(round(sqrt(2*input$CGITS^2*(1-input$TRR)),2))
     }
     if (input$RCI == "Speer") { 
-      return(round(sqrt(2*input$CGITS*(1-input$TRR)),2))
+      return(round(sqrt(2*input$CGITS^2*(1-input$TRR)),2))
     }
     if (input$RCI == "Chelune") {
-      return(round(sqrt(2*input$CGITS*(1-input$TRR)),2))
+      return(round(sqrt(2*input$CGITS^2*(1-input$TRR)),2))
     }
     if (input$RCI == "McSweeny") {
       return(round(input$CGRS*sqrt(1-input$TRR^2),2))
@@ -55,11 +55,11 @@ shinyServer(function(input, output) {
       return(round(input$CGRS*sqrt(1-input$TRR^2),2))
     }
     if (input$RCI == "CH") {
-      SE4 <- sqrt(2*input$CGITS*(1-input$TRR))
+      SE4 <- input$CGRS*sqrt(1-input$TRR^2)
       return(round(SE4*sqrt(1+(1/input$CGSS)+(((input$EITS-input$CGITM)^2)/((input$CGITS^2)*(input$CGSS-1)))),2))
     }
     if (input$RCI == "Temkin") {
-      return(round(sqrt(input$CGITS^2 + input$CGRS^2 + 2*input$CGITS*input$CGRS*input$TRR),2))
+      return(round(sqrt(input$CGITS^2 + input$CGRS^2 - 2*input$CGITS*input$CGRS*input$TRR),2))
     }
     if (input$RCI == "Iverson") {
       return(round(sqrt((input$CGITS^2 + input$CGRS^2)*(1-input$TRR)),2))
@@ -78,4 +78,16 @@ shinyServer(function(input, output) {
   output$LowerCI <- renderText({paste0("Lower Band of ", as.numeric(input$CI), "% Interval: ", LowerCI())})
   output$UpperCI <- renderText({paste0("Upper Band of ", as.numeric(input$CI), "% Interval: ", UpperCI())})
   output$zscore <- renderText({paste0("z-score: ", zscore())})
+  
+  output$plot <- renderPlot({
+    plot(input$OT2S, 1, type = "p", xlab = "Score", axes = FALSE, ylab = "", 
+         pch = 16, xlim = c(input$CGITM-3*input$CGITS, input$CGITM+3*input$CGITS),
+         ylim=c(.5, 1.5))
+    axis(1)
+    points(Yprime(), 1, pch = 17, col = "red")
+    arrows(Yprime(), 1, LowerCI(), 1, col = "red", angle = 90)
+    arrows(Yprime(), 1, UpperCI(), 1, col = "red", angle = 90)
+    legend("top", pch = c(16, 17), col = c("black","red"), 
+           c("Observed Time 2 Score", "Predicted Time 2 Score"))
+  })
 })
