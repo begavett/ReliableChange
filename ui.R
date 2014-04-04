@@ -24,13 +24,12 @@ shinyUI(pageWithSidebar(
     numericInput("CGRS", "Control Group Retest SD:",0),
     numericInput("TRR", "Test-Retest Reliability:",0,min=0,max=1),
     numericInput("CGSS", "Control Sample Size (N):",0,min=0),
-  numericInput("OT2S", "Observed Time 2 Score:",0),
-  submitButton("Calculate")),
+    numericInput("OT2S", "Observed Time 2 Score:",0),
+    submitButton("Calculate")),
   
   mainPanel(textOutput("PT2S"),
             textOutput("SE"),
             textOutput("LowerCI"),
             textOutput("UpperCI"),
             textOutput("zscore"))
-  
 ))
