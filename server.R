@@ -68,9 +68,9 @@ shinyServer(function(input, output) {
       return(round(sqrt((input$CGITS^2 + input$CGRS^2)*(1-input$TRR)),2))
     }
   })
-  LowerCI <- reactive({Yprime()+(qnorm((100-input$CI)/200)*SE())})
-  UpperCI <- reactive({Yprime()+(qnorm((100-input$CI)/200,lower.tail=FALSE)*SE())})
-  zscore <- reactive({(input$OT2S - Yprime())/SE()})
+  LowerCI <- reactive({round(Yprime()+(qnorm((100-input$CI)/200)*SE()),2)})
+  UpperCI <- reactive({round(Yprime()+(qnorm((100-input$CI)/200,lower.tail=FALSE)*SE()),2)})
+  zscore <- reactive({round((input$OT2S - Yprime())/SE(),2)})
 
   output$RCI <- renderText(input$RCI)
   output$PT2S <- renderText(paste0("Predicted Time 2 Score: ", Yprime()))
