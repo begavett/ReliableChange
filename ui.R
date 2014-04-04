@@ -4,7 +4,7 @@ shinyUI(pageWithSidebar(
   # Application Title
   headerPanel("Reliable Change Calculator"),
   
-  #Sidebar with controls to enter hits, etc.
+  #Sidebar with controls to enter test scores, etc.
   sidebarPanel(
     selectInput("RCI","Reliable Change Model:",
                 choices=list("Jacobson & Truax (1991)" = "JT",

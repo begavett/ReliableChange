@@ -1,6 +1,6 @@
 library(shiny)
 
-# Define server logic required to plot various variables against mpg
+# Define server logic required to calculate various reliable change indices
 shinyServer(function(input, output) {
   Yprime <- reactive({
     if (input$RCI == "JT") {
