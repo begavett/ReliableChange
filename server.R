@@ -103,7 +103,7 @@ shinyServer(function(input, output) {
   
   output$plot <- renderPlot({
     plot(input$OT2S, 1, type = "p", xlab = "Score", axes = FALSE, ylab = "", 
-         pch = 16, xlim = c(min(input$EITS, input$EITS-3*input$CGITS, input$CGITM-3*input$CGITS), max(input$EITS, input$EITS+3*input$CGITS, input$CGITM+3*input$CGITS)),
+         pch = 16, xlim = c(min(input$OT2S, Yprime(), LowerCI()), max(input$OT2S, Yprime(), UpperCI())),
          ylim=c(.5, 1.5))
     axis(1)
     points(Yprime(), 1, pch = 17, col = "red")
