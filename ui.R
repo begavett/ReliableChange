@@ -30,7 +30,7 @@ column(8,
 h2("Reliable Change Calculator")),
 column(4,
 img(src = "http://www.uccs.edu/Images/brand/uccs-logo.png", width=400, height=58))),
-fluidRow(HTML("Based on Hinton-Bayre, A. D. (2013). Deriving Reliable Change Statistics from Test–Retest Normative Data: Comparison of Models and Mathematical Expressions. <i>Archives of Clinical Neuropsychology</i>, <i>25</i>, 244-256. <a href = 'http://acn.oxfordjournals.org/content/25/3/244.full.pdf+html'><img src = 'http://www.adobe.com/images/pdficon_small.png'></a>")),
+fluidRow(HTML("Based on Hinton-Bayre, A. D. (2013). Deriving Reliable Change Statistics from Test-Retest Normative Data: Comparison of Models and Mathematical Expressions. <i>Archives of Clinical Neuropsychology</i>, <i>25</i>, 244-256. <a href = 'http://acn.oxfordjournals.org/content/25/3/244.full.pdf+html'><img src = 'http://www.adobe.com/images/pdficon_small.png'></a>")),
 tags$hr(),
   fluidRow(
     column(3,
